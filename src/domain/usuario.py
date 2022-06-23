@@ -1,11 +1,16 @@
 import string
 import sys
+import uuid
 sys.path.append('C:\\Users\\aluno01\\Desktop\\Desafio Porto\\src')
 from Enum.gender_enum import Gender
 from datetime import date
 
 class Usuario():
-  def __init__(self, nome: str, email: str, senha: str, celular1: str, data_nasci: date,cpf: str, celular2:str, genero: Gender = Gender.NAO_DEFINIDO):
+  def __init__(self, nome: str, email: str, senha: str, celular1: str, data_nasci: date,cpf: str, celular2:str, genero: Gender = Gender.NAO_DEFINIDO, id: uuid = None):
+    if(id == None):
+      self.id = uuid.uuid4()
+
+    self.id = id
     self.nome = nome 
     self.email = email
     self.senha = senha 
@@ -69,5 +74,13 @@ class Usuario():
       raise Exception("Precisa ser de maior para realizar cadastro")
   
   def valida_genero(self):
-    if (self.genero != Gender.FEMININO or self.genero != Gender.MASCULINO or self.genero != Gender.NAO_DEFINIDO):
+    if (self.genero != Gender.FEMININO and self.genero != Gender.MASCULINO and self.genero != Gender.NAO_DEFINIDO):
       raise Exception("Genero invalido")
+  
+  def show_me(self):
+    print(f'{self.id}{self.nome}{self.email}{self.senha}')
+
+
+ravel = Usuario("ravel","ravel.santos@hotmail.com.br","ravel1203","21986111355",date(1999,3,12),"15103414716","21986111355",Gender.MASCULINO)
+ravel.valida()
+ravel.show_me()
