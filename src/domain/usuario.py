@@ -6,9 +6,9 @@ from Enum.gender_enum import Gender
 from datetime import date
 
 class Usuario():
-  def __init__(self, nome: str, email: str, senha: str, celular1: str, data_nasci: date,cpf: str, celular2:str, genero: Gender = Gender.NAO_DEFINIDO, id: uuid = None):
+  def __init__(self, nome: str, email: str, senha: str, celular1: str, data_nasci: date,cpf: str, celular2:str, genero: Gender = Gender.NAO_DEFINIDO, id: uuid=None):
     if(id == None):
-      self.id = uuid.uuid4()
+      id = uuid.uuid1()
 
     self.id = id
     self.nome = nome 
@@ -79,8 +79,6 @@ class Usuario():
   
   def show_me(self):
     print(f'{self.id}{self.nome}{self.email}{self.senha}')
-
-
 ravel = Usuario("ravel","ravel.santos@hotmail.com.br","ravel1203","21986111355",date(1999,3,12),"15103414716","21986111355",Gender.MASCULINO)
 ravel.valida()
 ravel.show_me()
